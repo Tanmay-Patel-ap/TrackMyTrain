@@ -1,27 +1,27 @@
 # TrackMyTrain
 
-A C++ railway information console application powered by the **RailCore Engine**. Fetches live train data from the [Indian Railways API](https://rapidapi.com/rakeshmk/api/indian-railways-live-train-status/) (RapidAPI) with a built-in mock mode for offline development.
+A C++ railway information application powered by the **RailCore Engine**. Comes with both a terminal UI and a web GUI. Fetches live train data from the [Indian Railways API](https://rapidapi.com/rakeshmk/api/indian-railways-live-train-status/) (RapidAPI) with a built-in mock mode for offline development.
 
 ## Features
 
-| # | Feature | Description |
-|---|---------|-------------|
-| 1 | Train Schedule | Get route, timings, and distance for any train |
-| 2 | PNR Status | Check booking/current status of PNR (10-digit) |
-| 3 | Live Train Status | Track live location, delay, and next station |
-| 4 | Station Status | View arriving and departing trains at a station |
-| 5 | Search Train | Find trains by name or number |
-| 6 | Trains Between Stations | List trains between two stations on a given date |
-| 7 | Seat Availability | Check available seats and fare for a class |
-| 8 | Fare Enquiry | Get base and total fare for a train route |
+| # | Feature | CLI | Web GUI |
+|---|---------|-----|---------|
+| 1 | Train Schedule | yes | yes |
+| 2 | PNR Status | yes | yes |
+| 3 | Live Train Status | yes | yes |
+| 4 | Station Status | yes | yes |
+| 5 | Search Train | yes | yes |
+| 6 | Trains Between Stations | yes | yes |
+| 7 | Seat Availability | yes | yes |
+| 8 | Fare Enquiry | yes | yes |
 
 ## Architecture
 
 ```
-Terminal UI
-    ↓
-Controller Layer    (input validation, display)
-    ↓
+Terminal UI          Web Browser
+    ↓                     ↓
+Controller Layer     REST API (httplib::Server)
+    ↓                     ↓
 Service Layer       (business logic, error wrapping)
     ↓
 API Layer           (HTTP client, mock file reader)
@@ -33,43 +33,37 @@ Railway API / Test Data
 
 - **C++17** with CMake 3.16+
 - **MinGW-w64** g++ 15.2.0
-- **cpp-httplib** — header-only HTTP client
+- **cpp-httplib** — header-only HTTP client/server
 - **nlohmann/json** — header-only JSON parser
 - **RapidAPI** — Indian Railways Live Train Status API
+- **Vanilla HTML/CSS/JS** — web frontend (no framework)
 
 ## Project Structure
 
 ```
 trackmytrain/
 ├── server/
-│   ├── main.cpp                 Entry point and menu loop
+│   ├── main.cpp                 Entry point (CLI + --server flag)
+│   ├── Server.h/.cpp            REST API server (8 endpoints)
 │   ├── CMakeLists.txt           Build configuration
-│   ├── config/
-│   │   └── AppConfig.h/.cpp     Singleton config (API key, mode)
-│   ├── api/
-│   │   ├── HttpClient.h/.cpp    HTTP GET + mock file reader
-│   │   └── RailwayApiClient.h/.cpp  API endpoint methods
-│   ├── models/                  11 plain-data structs (Train, PNR, Fare, etc.)
+│   ├── config/AppConfig         Singleton config (API key, mode)
+│   ├── api/HttpClient           HTTP GET + mock file reader
+│   ├── api/RailwayApiClient     API endpoint methods
+│   ├── models/                  11 plain-data structs
 │   ├── utils/
-│   │   ├── JsonParser.h/.cpp    JSON → model parsing
-│   │   └── Logger.h/.cpp        Singleton file logger with timestamps
-│   ├── services/                4 service classes with error handling
-│   ├── controllers/             4 controller classes with validation
-│   └── test_data/               13 mock JSON files for all features
-├── client/                      Future V2 web frontend
-├── documentation.md             Development roadmap
+│   │   ├── JsonParser           JSON → model parsing
+│   │   └── Logger               Singleton file logger
+│   ├── services/                4 service classes
+│   ├── controllers/             4 controller classes
+│   └── test_data/               13 mock JSON files
+├── client/
+│   ├── index.html               Single-page app
+│   ├── style.css                Dark theme, responsive
+│   └── script.js                Fetch + DOM rendering
 └── README.md
 ```
 
-## Build & Run
-
-### Prerequisites
-
-- CMake 3.16+
-- C++17 compiler (g++ 15.2.0 recommended)
-- Internet connection (first build fetches dependencies)
-
-### Build
+## Build
 
 ```bash
 cd server/build
@@ -77,51 +71,38 @@ cmake .. -G "MinGW Makefiles"
 cmake --build .
 ```
 
-### Run
+## Run
+
+### CLI mode
 
 ```bash
 cd server/build
 ./TrackMyTrain.exe
 ```
 
+### Web server mode
+
+```bash
+cd server/build
+./TrackMyTrain.exe --server
+# Open http://localhost:8080
+```
+
 Press **Enter** at the API key prompt to use MOCK mode with local test data. Enter a RapidAPI key for live data.
 
-### Build Notes
+### Custom port
 
-- `TEST_DATA_DIR` is set automatically at compile time — mock files are resolved to `server/test_data/`
+```bash
+./TrackMyTrain.exe --server 9090
+```
+
+## Build Notes
+
+- `TEST_DATA_DIR` and `CLIENT_DIR` are set automatically at compile time
 - Dependencies (cpp-httplib, nlohmann/json) are fetched via CMake `FetchContent`
-- On Windows, links `ws2_32` and `crypt32` for HTTPS support
+- On Windows, links `ws2_32` and `crypt32` for HTTPS
+- On Linux, links `pthread`
 - Logs written to `trackmytrain.log` in the working directory
-
-## Usage
-
-1. Launch the app
-2. Press Enter to use MOCK mode (or paste a RapidAPI key for live data)
-3. Select an option from the menu (1-8 or 0 to exit)
-4. Follow the prompts for each feature
-
-### Example
-
-```
-Enter RapidAPI Key (or press Enter to use MOCK mode):
-Mode set to MOCK (using local test data)
-
-        TRACKMYTRAIN - RailCore
-========================================
---- Main Menu ---
- 1. Train Schedule
- 2. PNR Status
- ...
- 0. Exit
-Choice: 1
-```
-
-## Roadmap
-
-- **V1** (current) — Core engine + terminal UI (complete)
-- **V2** (planned) — Web frontend in `client/` with REST API backend
-
-See `documentation.md` for the full development roadmap.
 
 ## License
 

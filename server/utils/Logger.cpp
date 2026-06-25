@@ -80,7 +80,7 @@ void Logger::warn(const std::string& message,
 
 void Logger::error(const std::string& message,
                    const std::string& file, int line) {
-    log(LogLevel::ERROR, message, file, line);
+    log(LogLevel::LOG_ERROR, message, file, line);
 }
 
 std::string Logger::levelToString(LogLevel level) {
@@ -88,7 +88,7 @@ std::string Logger::levelToString(LogLevel level) {
         case LogLevel::DEBUG: return "DEBUG";
         case LogLevel::INFO:  return "INFO";
         case LogLevel::WARN:  return "WARN";
-        case LogLevel::ERROR: return "ERROR";
+        case LogLevel::LOG_ERROR: return "ERROR";
         default:              return "UNKN";
     }
 }

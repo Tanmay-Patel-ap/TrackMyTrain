@@ -29,6 +29,7 @@ FetchContent_MakeAvailable(nlohmann_json)
 
 set(SOURCES
   main.cpp
+  Server.cpp
   config/AppConfig.cpp
   api/HttpClient.cpp
   api/RailwayApiClient.cpp
@@ -48,6 +49,7 @@ add_executable(TrackMyTrain ${SOURCES})
 
 target_compile_definitions(TrackMyTrain PRIVATE
   TEST_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/test_data"
+  CLIENT_DIR="${CMAKE_CURRENT_SOURCE_DIR}/../client"
 )
 
 target_include_directories(TrackMyTrain PRIVATE
@@ -58,4 +60,6 @@ target_include_directories(TrackMyTrain PRIVATE
 
 if(WIN32)
   target_link_libraries(TrackMyTrain PRIVATE ws2_32 crypt32)
+else()
+  target_link_libraries(TrackMyTrain PRIVATE pthread)
 endif()

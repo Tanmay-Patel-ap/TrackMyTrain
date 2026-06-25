@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrackMyTrain</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>TrackMyTrain</h1>
+    <p class="subtitle">RailCore Engine</p>
+  </header>
+
+  <nav id="nav">
+    <button class="nav-btn" data-section="schedule">Train Schedule</button>
+    <button class="nav-btn" data-section="pnr">PNR Status</button>
+    <button class="nav-btn" data-section="live">Live Train Status</button>
+    <button class="nav-btn" data-section="station">Station Status</button>
+    <button class="nav-btn" data-section="search">Search Train</button>
+    <button class="nav-btn" data-section="between">Trains Between Stations</button>
+    <button class="nav-btn" data-section="seat">Seat Availability</button>
+    <button class="nav-btn" data-section="fare">Fare Enquiry</button>
+  </nav>
+
+  <div id="result" class="result-area"></div>
+
+  <section id="section-schedule" class="feature-section active">
+    <h2>Train Schedule</h2>
+    <div class="form-group">
+      <label for="schedule-trainNo">Train Number</label>
+      <input type="text" id="schedule-trainNo" placeholder="e.g. 12301">
+    </div>
+    <button class="submit-btn" onclick="getSchedule()">Search</button>
+    <div id="result-schedule" class="feature-result"></div>
+  </section>
+
+  <section id="section-pnr" class="feature-section">
+    <h2>PNR Status</h2>
+    <div class="form-group">
+      <label for="pnr-number">PNR Number</label>
+      <input type="text" id="pnr-number" placeholder="e.g. 1234567890">
+    </div>
+    <button class="submit-btn" onclick="getPNRStatus()">Search</button>
+    <div id="result-pnr" class="feature-result"></div>
+  </section>
+
+  <section id="section-live" class="feature-section">
+    <h2>Live Train Status</h2>
+    <div class="form-group">
+      <label for="live-trainNo">Train Number</label>
+      <input type="text" id="live-trainNo" placeholder="e.g. 12301">
+    </div>
+    <button class="submit-btn" onclick="getLiveStatus()">Track</button>
+    <div id="result-live" class="feature-result"></div>
+  </section>
+
+  <section id="section-station" class="feature-section">
+    <h2>Station Status</h2>
+    <div class="form-group">
+      <label for="station-code">Station Code</label>
+      <input type="text" id="station-code" placeholder="e.g. NDLS">
+    </div>
+    <button class="submit-btn" onclick="getStationStatus()">Search</button>
+    <div id="result-station" class="feature-result"></div>
+  </section>
+
+  <section id="section-search" class="feature-section">
+    <h2>Search Train</h2>
+    <div class="form-group">
+      <label for="search-query">Train Name or Number</label>
+      <input type="text" id="search-query" placeholder="e.g. Rajdhani">
+    </div>
+    <button class="submit-btn" onclick="searchTrain()">Search</button>
+    <div id="result-search" class="feature-result"></div>
+  </section>
+
+  <section id="section-between" class="feature-section">
+    <h2>Trains Between Stations</h2>
+    <div class="form-group">
+      <label for="between-from">From (Station Code)</label>
+      <input type="text" id="between-from" placeholder="e.g. NDLS">
+    </div>
+    <div class="form-group">
+      <label for="between-to">To (Station Code)</label>
+      <input type="text" id="between-to" placeholder="e.g. BCT">
+    </div>
+    <div class="form-group">
+      <label for="between-date">Date</label>
+      <input type="text" id="between-date" placeholder="DD-MM-YYYY (e.g. 15-06-2026)">
+    </div>
+    <button class="submit-btn" onclick="getTrainsBetween()">Search</button>
+    <div id="result-between" class="feature-result"></div>
+  </section>
+
+  <section id="section-seat" class="feature-section">
+    <h2>Seat Availability</h2>
+    <div class="form-group">
+      <label for="seat-trainNo">Train Number</label>
+      <input type="text" id="seat-trainNo" placeholder="e.g. 12301">
+    </div>
+    <div class="form-group">
+      <label for="seat-from">From (Code)</label>
+      <input type="text" id="seat-from" placeholder="e.g. NDLS">
+    </div>
+    <div class="form-group">
+      <label for="seat-to">To (Code)</label>
+      <input type="text" id="seat-to" placeholder="e.g. BCT">
+    </div>
+    <div class="form-group">
+      <label for="seat-date">Date</label>
+      <input type="text" id="seat-date" placeholder="YYYY-MM-DD (e.g. 2026-06-15)">
+    </div>
+    <div class="form-group">
+      <label for="seat-class">Class</label>
+      <input type="text" id="seat-class" placeholder="e.g. 3A, SL, 2A">
+    </div>
+    <button class="submit-btn" onclick="getSeatAvailability()">Check</button>
+    <div id="result-seat" class="feature-result"></div>
+  </section>
+
+  <section id="section-fare" class="feature-section">
+    <h2>Fare Enquiry</h2>
+    <div class="form-group">
+      <label for="fare-trainNo">Train Number</label>
+      <input type="text" id="fare-trainNo" placeholder="e.g. 12301">
+    </div>
+    <div class="form-group">
+      <label for="fare-from">From (Code)</label>
+      <input type="text" id="fare-from" placeholder="e.g. NDLS">
+    </div>
+    <div class="form-group">
+      <label for="fare-to">To (Code)</label>
+      <input type="text" id="fare-to" placeholder="e.g. BCT">
+    </div>
+    <div class="form-group">
+      <label for="fare-class">Class</label>
+      <input type="text" id="fare-class" placeholder="e.g. 3A, SL, 2A">
+    </div>
+    <button class="submit-btn" onclick="getFare()">Search</button>
+    <div id="result-fare" class="feature-result"></div>
+  </section>
+
+  <footer>
+    <p>TrackMyTrain &mdash; RailCore Engine V1</p>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

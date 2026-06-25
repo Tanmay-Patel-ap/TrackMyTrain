@@ -12,6 +12,7 @@
 #include "controllers/StationController.h"
 #include "controllers/SeatController.h"
 #include "utils/Logger.h"
+#include "Server.h"
 
 void clearScreen() {
 #ifdef _WIN32
@@ -49,10 +50,45 @@ static bool isNumber(const std::string& s) {
     return true;
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    bool serverMode = false;
+    int port = 8080;
+    for (int i = 1; i < argc; ++i) {
+        std::string arg(argv[i]);
+        if (arg == "--server") {
+            serverMode = true;
+            if (i + 1 < argc) {
+                port = std::stoi(argv[++i]);
+            }
+        }
+    }
+
     auto& config = AppConfig::instance();
     auto& log = Logger::instance();
     log.setQuiet(true);
+
+    RailwayApiClient apiClient;
+    TrainService trainSvc(apiClient);
+    PNRService pnrSvc(apiClient);
+    StationService stationSvc(apiClient);
+    SeatService seatSvc(apiClient);
+
+    if (serverMode) {
+        std::cout << "Enter RapidAPI Key (or press Enter to use MOCK mode): ";
+        std::string key;
+        std::getline(std::cin, key);
+        config.setApiKey(key);
+
+        if (config.mode() == ApiMode::REAL) {
+            std::cout << "Mode set to REAL API\n";
+        } else {
+            std::cout << "Mode set to MOCK (using local test data)\n";
+        }
+
+        Server server(trainSvc, pnrSvc, stationSvc, seatSvc);
+        server.start(port);
+        return 0;
+    }
 
     std::cout << "Enter RapidAPI Key (or press Enter to use MOCK mode): ";
     std::string key;
@@ -64,12 +100,6 @@ int main() {
     } else {
         std::cout << "Mode set to MOCK (using local test data)\n";
     }
-
-    RailwayApiClient apiClient;
-    TrainService trainSvc(apiClient);
-    PNRService pnrSvc(apiClient);
-    StationService stationSvc(apiClient);
-    SeatService seatSvc(apiClient);
 
     TrainController trainCtrl(trainSvc);
     PNRController pnrCtrl(pnrSvc);
