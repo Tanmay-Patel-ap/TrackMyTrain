@@ -1,0 +1,10 @@
+{
+  "status": true,
+  "message": "success",
+  "data": [
+    {"class_code": "1A", "class_name": "AC First Class", "fare": "4820"},
+    {"class_code": "2A", "class_name": "AC 2 Tier", "fare": "2775"},
+    {"class_code": "3A", "class_name": "AC 3 Tier", "fare": "1895"},
+    {"class_code": "SL", "class_name": "Sleeper", "fare": "720"}
+  ]
+}

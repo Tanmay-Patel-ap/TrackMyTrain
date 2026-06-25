@@ -1,0 +1,8 @@
+{
+  "status": true,
+  "message": "success",
+  "data": [
+    {"train_number": "12301", "train_name": "HOWRAH - NEW DELHI RAJDHANI EXPRESS", "source": "HWH", "destination": "NDLS", "type": "RAJDHANI"},
+    {"train_number": "12302", "train_name": "NEW DELHI - HOWRAH RAJDHANI EXPRESS", "source": "NDLS", "destination": "HWH", "type": "RAJDHANI"}
+  ]
+}

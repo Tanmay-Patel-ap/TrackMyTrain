@@ -1,0 +1,12 @@
+{
+  "status": true,
+  "message": "success",
+  "data": {
+    "station_code": "NDLS",
+    "station_name": "NEW DELHI",
+    "trains": [
+      {"train_number": "12301", "train_name": "HOWRAH - NEW DELHI RAJDHANI EXPRESS", "platform": "5", "arrival": "04:30", "departure": "05:00", "delay": "10 min"},
+      {"train_number": "12622", "train_name": "TAMIL NADU EXPRESS", "platform": "3", "arrival": "06:15", "departure": "06:20", "delay": "0 min"}
+    ]
+  }
+}

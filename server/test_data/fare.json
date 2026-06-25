@@ -1,0 +1,13 @@
+{
+  "status": true,
+  "message": "success",
+  "data": {
+    "train_number": "12301",
+    "from": "HWH",
+    "to": "NDLS",
+    "class": "3A",
+    "base_fare": "1725",
+    "total_fare": "1895",
+    "distance": "1231"
+  }
+}

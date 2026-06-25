@@ -1,0 +1,16 @@
+{
+  "status": true,
+  "message": "success",
+  "data": {
+    "train_number": "12301",
+    "train_name": "HOWRAH - NEW DELHI RAJDHANI EXPRESS",
+    "source": "HWH",
+    "destination": "NDLS",
+    "running_days": ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
+    "classes": ["1A", "2A", "3A"],
+    "schedule": [
+      {"station_code": "HWH", "station_name": "HOWRAH JN", "arrival": "13:05", "departure": "13:05", "distance": "0", "day": 1},
+      {"station_code": "NDLS", "station_name": "NEW DELHI", "arrival": "04:30", "departure": "04:30", "distance": "1231", "day": 2}
+    ]
+  }
+}

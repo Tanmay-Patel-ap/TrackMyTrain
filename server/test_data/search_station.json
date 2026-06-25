@@ -1,0 +1,11 @@
+{
+  "status": true,
+  "message": "success",
+  "data": [
+    {"station_code": "NDLS", "station_name": "NEW DELHI"},
+    {"station_code": "DLI", "station_name": "DELHI"},
+    {"station_code": "SZM", "station_name": "SUBZI MANDI"},
+    {"station_code": "DEC", "station_name": "DELHI CANTT"},
+    {"station_code": "DSB", "station_name": "DELHI SAFDARJUNG"}
+  ]
+}

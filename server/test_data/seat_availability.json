@@ -1,0 +1,14 @@
+{
+  "status": true,
+  "message": "success",
+  "data": {
+    "train_number": "12301",
+    "train_name": "HOWRAH - NEW DELHI RAJDHANI EXPRESS",
+    "date": "2026-06-26",
+    "from": "HWH",
+    "to": "NDLS",
+    "class": "3A",
+    "available_seats": "45",
+    "fare": "1895"
+  }
+}

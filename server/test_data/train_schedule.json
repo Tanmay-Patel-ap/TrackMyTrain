@@ -1,0 +1,21 @@
+{
+  "status": true,
+  "message": "success",
+  "data": {
+    "train_number": "12301",
+    "train_name": "HOWRAH - NEW DELHI RAJDHANI EXPRESS",
+    "source": "HWH",
+    "destination": "NDLS",
+    "type": "RAJDHANI",
+    "schedule": [
+      {"station_code": "HWH", "station_name": "HOWRAH JN", "arrival": "00:00", "departure": "13:05", "distance": "0", "day": 1},
+      {"station_code": "DUR", "station_name": "DURGAPUR", "arrival": "15:43", "departure": "15:45", "distance": "158", "day": 1},
+      {"station_code": "ASN", "station_name": "ASANSOL JN", "arrival": "16:30", "departure": "16:35", "distance": "200", "day": 1},
+      {"station_code": "GAYA", "station_name": "GAYA JN", "arrival": "19:28", "departure": "19:33", "distance": "461", "day": 1},
+      {"station_code": "MGS", "station_name": "MUGHAL SARAI JN", "arrival": "21:17", "departure": "21:22", "distance": "541", "day": 1},
+      {"station_code": "ALD", "station_name": "ALLAHABAD JN", "arrival": "23:05", "departure": "23:10", "distance": "636", "day": 1},
+      {"station_code": "CNB", "station_name": "KANPUR CENTRAL", "arrival": "01:10", "departure": "01:15", "distance": "803", "day": 2},
+      {"station_code": "NDLS", "station_name": "NEW DELHI", "arrival": "04:30", "departure": "00:00", "distance": "1231", "day": 2}
+    ]
+  }
+}

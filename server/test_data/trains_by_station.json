@@ -1,0 +1,16 @@
+{
+  "status": true,
+  "message": "success",
+  "data": {
+    "station_code": "NDLS",
+    "station_name": "NEW DELHI",
+    "arriving": [
+      {"train_number": "12301", "train_name": "HOWRAH - NEW DELHI RAJDHANI EXPRESS", "source": "HWH", "destination": "NDLS", "type": "RAJDHANI"},
+      {"train_number": "12621", "train_name": "TAMIL NADU EXPRESS", "source": "MAS", "destination": "NDLS", "type": "SUPERFAST"}
+    ],
+    "departing": [
+      {"train_number": "12302", "train_name": "NEW DELHI - HOWRAH RAJDHANI EXPRESS", "source": "NDLS", "destination": "HWH", "type": "RAJDHANI"},
+      {"train_number": "12622", "train_name": "TAMIL NADU EXPRESS", "source": "NDLS", "destination": "MAS", "type": "SUPERFAST"}
+    ]
+  }
+}

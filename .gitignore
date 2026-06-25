@@ -1,0 +1,27 @@
+# Build
+server/build/
+build/
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Docs
+documentation.md
+
+# Compiled
+*.exe
+*.out
+*.obj
+*.o

@@ -1,0 +1,14 @@
+{
+  "status": true,
+  "message": "success",
+  "data": {
+    "train_number": "12301",
+    "train_name": "HOWRAH - NEW DELHI RAJDHANI EXPRESS",
+    "current_station": "GAYA",
+    "current_station_name": "GAYA JN",
+    "delay": "15 min",
+    "next_station": "MGS",
+    "next_station_name": "MUGHAL SARAI JN",
+    "last_updated": "2026-06-26 19:40:00"
+  }
+}
